@@ -7,7 +7,7 @@ class Post < ApplicationRecord
     user_id.update(posts_counter: author.posts.count)
   end
 
-  def last_five_comments
+  def last_comments
     comments.includes(:post_id).order(created_at: :ASC).limit(5)
   end
 end
