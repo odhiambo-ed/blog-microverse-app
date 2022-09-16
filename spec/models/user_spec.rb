@@ -24,5 +24,4 @@ RSpec.describe User, type: :model do
     subject.Name = '   '
     expect(subject).to_not be_valid
   end
-
 end

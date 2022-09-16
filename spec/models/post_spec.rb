@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   describe 'Creation' do
     subject do
-      user1 = User.new(Name: 'Janet', Photo: 'https://unsplash.com/photos/2LowviVHZ-F', Bio: 'I am twenty two years old', PostsCounter: 0)
-      Post.new(Title: 'Hello World', Text: 'This is my first post and I am happy', CommentsCounter: 2, LikesCounter: 3, author_id: user1.id)
+      user1 = User.new(Name: 'Janet', Photo: 'https://unsplash.com/photos/2LowviVHZ-F',
+                       Bio: 'I am twenty two years old', PostsCounter: 0)
+      Post.new(Title: 'Hello World', Text: 'This is my first post and I am happy', CommentsCounter: 2, LikesCounter: 3,
+               author_id: user1.id)
     end
 
     before { subject.save }
