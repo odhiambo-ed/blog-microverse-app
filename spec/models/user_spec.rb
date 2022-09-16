@@ -9,4 +9,20 @@ RSpec.describe User, type: :model do
     subject.Name = nil
     expect(subject).to_not be_valid
   end
+
+  it 'name should not be blank' do
+    subject.Name = '   '
+    expect(subject).to_not be_valid
+  end
+
+  it 'postscounterempty' do
+    subject.Name = nil
+    expect(subject).to_not be_valid
+  end
+
+  it 'post should not be blank' do
+    subject.Name = '   '
+    expect(subject).to_not be_valid
+  end
+
 end
