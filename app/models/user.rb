@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :posts, class_name: 'post', foreign_key: :AuthorId
+  has_many :posts, class_name: 'post', foreign_key: :user_id
   has_many :likes
   has_many :comments
 
