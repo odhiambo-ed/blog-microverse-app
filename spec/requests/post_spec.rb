@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   describe 'List Posts' do
-    before (:example) { get '/user/1/post'}
+    before(:example) { get '/user/1/post' }
 
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
 
@@ -20,9 +20,6 @@ RSpec.describe 'Posts', type: :request do
   describe 'Show Post' do
     before(:example) { get '/user/1/post/1' }
 
-    # it 'responds with the code 400' do
-    #   expect(response).to have_http_status(:success)
-    # end
     it 'renders show view' do
       expect(response.body).to render_template('show')
     end

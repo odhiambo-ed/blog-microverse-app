@@ -3,7 +3,5 @@ class PostController < ApplicationController
     @posts = Post.all
   end
 
-  def show
-    
-  end
+  def show; end
 end
