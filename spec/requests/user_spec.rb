@@ -17,15 +17,17 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  # describe 'Show' do
-  #   it 'should render show.html.erb view' do
-  #     get '/user/1'
-  #     expect(response).to render_template('show')
-  #   end
+  describe 'Show' do
+    before(:example) { get '/user/1' }
 
-  #   it 'should render a user by id' do
-  #     get '/user/1'
-  #     expect(response.body).to include('Get user by id')
-  #   end
-  # end
+    it 'responds with the code 400' do
+      expect(response).to have_http_status(:success)
+    end
+    it 'renders show view' do
+      expect(response).to render_template(:show)
+    end
+    it 'shows contents in the view' do
+      expect(response.body).to include('User Details')
+    end
+  end
 end

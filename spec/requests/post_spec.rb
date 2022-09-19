@@ -2,27 +2,32 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   describe 'List Posts' do
-    it "should render 'index.html.erb' view" do
-      get '/user/1/post'
-      expect(response.body).to include('list of posts for a given user')
+    before (:example) { get '/user/1/post'}
+
+    it "returns http success" do
+      expect(response).to have_http_status(:success)
     end
 
-    it 'should render user/1/posts/index' do
-      get '/user/1/post'
-      expect(response).to have_http_status(200)
-      expect(response).to render_template('index')
+    it 'renders users index view' do
+      expect(response).to render_template(:index)
+    end
+
+    it 'shows content in the view' do
+      expect(response.body).to include('All Posts are here !!')
     end
   end
 
   describe 'Show Post' do
-    it "should render 'show.html.erb' view" do
-      get '/user/1/post/1'
-      expect(response.body).to include('Get post by id')
-    end
+    before(:example) { get '/user/1/post/1' }
 
-    it "should render 'show.html.erb' view" do
-      get '/user/1/post/1'
+    # it 'responds with the code 400' do
+    #   expect(response).to have_http_status(:success)
+    # end
+    it 'renders show view' do
       expect(response.body).to render_template('show')
+    end
+    it 'shows contents in the view' do
+      expect(response.body).to include('Details of a single post')
     end
   end
 end
