@@ -2,7 +2,7 @@
   <h4>There are no users currently in this system</h4>
 <% else %>
   <h4>List of blog Authors</h4>
-  <ul id = 'users'>
+  <div id = 'users'>
     <% @users.each do |user| %>
       <div class="card mb-3">
         <div class="row g-0">
@@ -22,5 +22,5 @@
         </div>
       </div>
     <% end %>
-  </ul>
+  </div>
 <% end %>

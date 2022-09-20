@@ -1,1 +1,19 @@
-<h1>All Posts are here !!</h1>
+<% if @posts.blank? %>
+  <h4>There are no posts currently for this user</h4>
+<% else %>
+  <% @posts.each.with_index(1) do|post, index| %>
+    <div id = 'posts'>
+      <div class="card text-center">
+        <div class="card-header">
+          <%= post.Title %>
+          <p class="card-text"><small class="text-muted">Comments: <%= post.CommentsCounter %></small></p>
+          <p class="card-text"><small class="text-muted">Likes: <%= post.LikesCounter %></small></p>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= post.Text %></p>
+          <%= link_to "See Post", user_post_path(post.author, post), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
