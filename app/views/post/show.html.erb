@@ -1,1 +1,23 @@
-<h1>Details of a single post</h1>
+    
+<div id = 'posts'>
+  <div class="card text-center">
+    <div class="card-header">
+      <%= @post.Title %>
+      <p class="card-text"><small class="text-muted">Comments: <%= @post.CommentsCounter %></small></p>
+      <p class="card-text"><small class="text-muted">Likes: <%= @post.LikesCounter %></small></p>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= @post.Text %></p>
+    </div>
+  </div>
+  <% if @post.CommentsCounter == 0 %>
+    <p>No comments for this post</p>
+  <% else %>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <% comments.each do |comment|%>
+          <li class="list-group-item"><%= comment.author.name %>: <%= comment.text %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
