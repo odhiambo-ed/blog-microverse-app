@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   describe 'Creation' do
-    subject { Comment.new(Text: 'Great Job', author_id: 1, post_id: 1) }
+    subject { Comment.new(text: 'Great Job', author_id: 1, post_id: 1) }
 
     before { subject.save }
 
