@@ -2,15 +2,15 @@
 <div id = 'posts'>
   <div class="card text-center">
     <div class="card-header">
-      <%= @post.Title %>
-      <p class="card-text"><small class="text-muted">Comments: <%= @post.CommentsCounter %></small></p>
-      <p class="card-text"><small class="text-muted">Likes: <%= @post.LikesCounter %></small></p>
+      <%= @post.title %>
+      <p class="card-text"><small class="text-muted">Comments: <%= @post.comments_counter %></small></p>
+      <p class="card-text"><small class="text-muted">Likes: <%= @post.likes_counter %></small></p>
     </div>
     <div class="card-body">
-      <p class="card-text"><%= @post.Text %></p>
+      <p class="card-text"><%= @post.text %></p>
     </div>
   </div>
-  <% if @post.CommentsCounter == 0 %>
+  <% if @post.comments_counter == 0 %>
     <p>No comments for this post</p>
   <% else %>
     <div class="card">
