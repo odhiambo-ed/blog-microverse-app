@@ -1,10 +1,13 @@
 class PostController < ApplicationController
   def index
-    @posts = Post.includes(:author).where(author: params[:user_id])
+    @user = User.find_by(id: params[:user_id])
+    @posts = Post.all.where(author_id: params[:user_id])
   end
 
   def show
-    @post = Post.find(params[:id])
+    @user = User.find_by(id: params[:user_id])
+    @post = Post.find_by(id: params[:id], author_id: params[:user_id])
+    @comments = Comment.all.where(post_id: params[:id])
   end
 
   def new
@@ -12,13 +15,29 @@ class PostController < ApplicationController
   end
 
   def create
-    @post = Post.create(post_params)
-    @post.author = Current.user
+    @post = Post.new(post_params)
+    @post.author_id = params[:user_id]
     if @post.save
-      flash[:notice] = 'Post was created successfully.'
-      redirect_to user_post_path(@post.author, @post)
+      @post.update_counter
+      flash[:success] = 'Object successfully created'
+      redirect_to user_post_path(id: @post.id, user_id: @post.author_id)
     else
-      render :new, status: :unprocessable_entity
+      flash[:error] = 'Something went wrong'
+      render 'new'
     end
+  end
+
+  def like
+    @user = User.find_by(id: params[:user_id])
+    @post = Post.find_by(id: params[:id], author_id: params[:user_id])
+    @like = Like.create(post_id: @post.id, Author_id: current_user.id)
+    @like.update_likes_counter
+    redirect_to user_post_path(@user, @post)
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:Title, :Text)
   end
 end
