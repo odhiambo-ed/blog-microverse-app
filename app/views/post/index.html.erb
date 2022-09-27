@@ -4,6 +4,10 @@
   <% @posts.each.with_index(1) do|post, index| %>
     <div id = 'posts'>
       <div class="card text-center">
+        <div class="d-flex flex-column justify-content-center">
+          <img src="<%= post.author.photo %>" class="img-fluid img-thumbnail" alt="User Profile">
+          <h6>By: <%= post.author.name %></h6>
+        </div>
         <div class="card-header">
           <%= post.title %>
           <p class="card-text"><small class="text-muted">Comments: <%= post.comments_counter %></small></p>
