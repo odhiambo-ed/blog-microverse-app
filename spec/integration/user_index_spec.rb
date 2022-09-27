@@ -12,24 +12,24 @@ RSpec.describe 'Test User Index Page', type: :feature do
     end
 
     it 'shows the users username' do
-      visit root_path
+      visit '/'
       expect(page).to have_content('Rose')
       expect(page).to have_content('Lillian')
       expect(page).to have_content('Swine')
     end
 
     it 'shows the users profile picture' do
-      visit root_path
+      visit '/'
       expect(page).to have_css('img[src*="image1.png"]')
       expect(page).to have_css('img[src*="image2.png"]')
       expect(page).to have_css('img[src*="image3.png"]')
     end
 
     it 'shows the number of posts of each user' do
-      visit root_path
-      expect(page).to have_content('10')
-      expect(page).to have_content('50')
-      expect(page).to have_content('40')
+      visit '/'
+      expect(page).to have_content('1')
+      expect(page).to have_content('5')
+      expect(page).to have_content('4')
     end
   end
 end 

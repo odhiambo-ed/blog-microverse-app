@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   describe 'Creation' do
     subject do
-      user1 = User.new(name: 'Janet', Photo: 'https://unsplash.com/photos/2LowviVHZ-F',
+      user1 = User.new(name: 'Janet', photo: 'https://unsplash.com/photos/2LowviVHZ-F',
                        bio: 'I am twenty two years old', posts_counter: 0)
       Post.new(title: 'Hello World', text: 'This is my first post and I am happy', comments_counter: 2,
                likes_counter: 3, author_id: user1.id)

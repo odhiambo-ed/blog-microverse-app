@@ -75,7 +75,7 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
-  gem 'webdrivers'
+  gem "database_cleaner"
 end
 
 gem 'rails-controller-testing'
