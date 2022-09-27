@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'Posts index page', type: :feature do
   before :each do
-    @user = User.create(name: 'Swine', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'I am an Engineer and am twenty seven years old.', posts_counter: 0)
-    @first_post = Post.create(title: 'Hello', text: 'This is my first post', comments_counter: 0, likes_counter: 0, author_id: @user.id)
-    5.times do |i|
+    @user = User.create(name: 'Swine', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+                        bio: 'I am an Engineer and am twenty seven years old.', posts_counter: 0)
+    @first_post = Post.create(title: 'Hello', text: 'This is my first post', comments_counter: 0, likes_counter: 0,
+                              author_id: @user.id)
+    5.times do |_i|
       Comment.create(text: 'Great Job!!', author_id: @user.id, post_id: @first_post.id)
     end
     visit user_post_path(@first_post.author, @first_post)
@@ -37,9 +39,11 @@ end
 
 RSpec.describe 'Test the Post show page', type: :feature do
   before :each do
-    @user = User.create(name: 'Swine', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'I am an Engineer and am twenty seven years old.', posts_counter: 0)
-    @first_post = Post.create(title: 'Hello', text: 'This is my first post', comments_counter: 0, likes_counter: 0, author_id: @user.id)
-    5.times do |i|
+    @user = User.create(name: 'Swine', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+                        bio: 'I am an Engineer and am twenty seven years old.', posts_counter: 0)
+    @first_post = Post.create(title: 'Hello', text: 'This is my first post', comments_counter: 0, likes_counter: 0,
+                              author_id: @user.id)
+    5.times do |_i|
       Comment.create(text: 'Great Job!!', author_id: @user.id, post_id: @first_post.id)
     end
     visit user_post_path(@first_post.author, @first_post)
