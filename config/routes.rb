@@ -1,13 +1,25 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get '/', to: 'user#index'
+  namespace :api do
+    namespace :v1 do
+      resources :posts
+      resources :users
+      resources :comments
+      resources :likes
 
-  resources :user, only: %i[index show] do
-    resources :post, only: %i[index show new create] do
-      resources :comments, only: [:create]
+      post '/login', to: 'auth#create'
+      get '/profile', to: 'users#profile'
+
+      get '/users/:id/posts', to: 'users#posts'
+      get '/users/:id/comments', to: 'users#comments'
+      get '/users/:id/likes', to: 'users#likes'
+
+      get '/posts/:id/comments', to: 'posts#comments'
+      get '/posts/:id/likes', to: 'posts#likes'
+
+      post '/posts/:id/like', to: 'posts#like'
+
+      post '/posts/:id/comment', to: 'posts#comment'
+      post '/users/:id/comment', to: 'users#comment'
+      end
     end
-  end
-
-  put 'user/:user_id/post/:id/like', to: 'posts#like', as: 'like'
 end
