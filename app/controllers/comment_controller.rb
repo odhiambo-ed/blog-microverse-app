@@ -1,4 +1,13 @@
 class CommentController < ApplicationController
+  def index
+    @user = current_user
+    @comments = @user.comments
+
+    respond_to do |format|
+      format.json { render json: @comments }
+    end
+  end
+
   def new
     @comment = Comment.new
     @user = current_user
@@ -17,6 +26,16 @@ class CommentController < ApplicationController
       flash[:error] = 'Something went wrong'
     end
     redirect_to user_post_path(@publisher, @post)
+
+    respond_to do |format|
+      if @comment.save!
+        format.html do
+          redirect_to user_post_url(current_user, @post), notice: 'Comment was successfully created.'
+        end
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
