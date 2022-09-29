@@ -1,13 +1,25 @@
 class PostController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @user = User.find_by(id: params[:user_id])
     @posts = Post.all.where(author_id: params[:user_id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
   end
 
   def show
     @user = User.find_by(id: params[:user_id])
     @post = Post.find_by(id: params[:id], author_id: params[:user_id])
     @comments = Comment.all.where(post_id: params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @post }
+    end
   end
 
   def new
@@ -25,6 +37,14 @@ class PostController < ApplicationController
     else
       flash[:error] = 'Something went wrong'
       render 'new'
+    end
+
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to user_post_url(current_user, @post), notice: 'Post was successfully created.' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
